@@ -1,0 +1,285 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #fce4ec, #e2e2e7);
+    font-family: "Times New Roman", Times, serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 10vh;
+    padding: 10vh 20px 20px 20px;
+}
+
+.header {
+    font-size: 2.8em;
+    margin-bottom: 2px;
+    margin-top: 0;
+    color: #c2185b;
+    text-align: center;
+}
+
+.container {
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+}
+
+.container > p {
+    margin: 0 0 20px 0;
+}
+
+.envelope {
+    width: min(600px, 90vw);
+    height: min(400px, 60vw);
+    position: relative;
+    margin: 0 auto 10px auto;
+}
+
+/* Bottom part of envelope */
+.envelope::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 62.5%;
+    background: #f8bbd0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Back triangle flap */
+.envelope::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: calc(min(600px, 90vw) / 2) solid transparent;
+    border-right: calc(min(600px, 90vw) / 2) solid transparent;
+    border-bottom: calc(min(400px, 60vw) * 0.625) solid #e8a5b8;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Front flap - simple fly away */
+.flap {
+    width: 0;
+    height: 0;
+    border-left: calc(min(600px, 90vw) / 2) solid transparent;
+    border-right: calc(min(600px, 90vw) / 2) solid transparent;
+    border-top: calc(min(400px, 60vw) * 0.625) solid #f48fb1;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 3;
+    transition: all 1.5s ease;
+    cursor: pointer;
+}
+
+/* Heart sa gitna ng envelope */
+.flap::before {
+    content: '❤';
+    position: absolute;
+    font-size: clamp(60px, 15vw, 100px);
+    color: #fff;
+    top: clamp(-140px, -21vw, -180px);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    transition: all 1.5s ease;
+    cursor: pointer;
+}
+
+.envelope.open .flap {
+    transform: rotate(-45deg) translateX(1500px) translateY(-800px) scale(0.3);
+    opacity: 0;
+}
+
+.letter {
+    background: linear-gradient(135deg, #fff9e6 0%, #fffdf7 100%);
+    background-image: 
+        linear-gradient(135deg, #fff9e6 0%, #fffdf7 100%),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 35px,
+            #e8d5c4 35px,
+            #e8d5c4 36px
+        );
+    padding: clamp(20px, 5vw, 50px) clamp(20px, 5vw, 60px);
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: clamp(0.9em, 2vw, 1.3em);
+    line-height: 2.2;
+    width: min(700px, 90vw);
+    max-width: 90vw;
+    max-height: 80vh;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    z-index: 10;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    white-space: pre-line;
+    text-align: left;
+    overflow-y: auto;
+    opacity: 0;
+    transition: all 0.8s ease 0.7s;
+    border: 2px solid #d4b896;
+    color: #2a2a2a;
+    cursor: pointer;  /* ADD THIS */
+}
+
+.envelope.open .letter {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+.footer {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-style: italic;
+    color: #666;
+    font-size: clamp(0.9em, 2vw, 1em);
+}
+
+p {
+    margin: 10px 0;
+}
+
+/* Hearts inside letter only */
+.letter-hearts {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.letter-heart {
+    position: absolute;
+    font-size: 20px;
+    color: #89CFF0;
+    opacity: 0.35;
+}
+
+/* Different falling patterns for variety */
+.letter-heart.fall-1 {
+    animation: fall1 4s linear forwards;
+}
+
+.letter-heart.fall-2 {
+    animation: fall2 5s linear forwards;
+}
+
+.letter-heart.fall-3 {
+    animation: fall3 4.5s linear forwards;
+}
+
+@keyframes fall1 {
+    0% {
+        top: -5%;
+        transform: translateX(0) rotate(0deg);
+        opacity: 0.4;
+    }
+    100% {
+        top: 105%;
+        transform: translateX(30px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes fall2 {
+    0% {
+        top: -5%;
+        transform: translateX(0) rotate(0deg);
+        opacity: 0.4;
+    }
+    100% {
+        top: 105%;
+        transform: translateX(-20px) rotate(-360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes fall3 {
+    0% {
+        top: -5%;
+        transform: translateX(0) rotate(0deg);
+        opacity: 0.4;
+    }
+    100% {
+        top: 105%;
+        transform: translateX(10px) rotate(180deg);
+        opacity: 0;
+    }
+}
+
+/* Falling Hearts Container */
+.hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999;
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    top: -50px;
+    font-size: 20px;
+    opacity: 0.15;
+    animation: fall linear forwards;
+    pointer-events: none;
+}
+
+@keyframes fall {
+    0% {
+        top: -50px;
+        opacity: 0.2;
+        transform: translateX(0) rotate(0deg);
+    }
+    50% {
+        opacity: 0.15;
+    }
+    100% {
+        top: 100vh;
+        opacity: 0;
+        transform: translateX(var(--sway, 0)) rotate(360deg);
+    }
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+    .header {
+        font-size: 2em;
+    }
+    
+    .letter {
+        line-height: 1.8;
+        padding: 30px 20px;
+    }
+    
+    body {
+        padding-top: 5vh;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        font-size: 1.5em;
+    }
+    
+    .letter {
+        font-size: 1em;
+        line-height: 1.6;
+    }
+}

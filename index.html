@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Gab</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="hearts-container"></div>
+
+<div class="header">
+Happy Valentine's Day! ❣
+</div>
+
+<div class="container">
+    <p><b>I hope you appreciate this, hehe. much love! &lt;3</b></p>
+    <div class="envelope" id="env">
+        <div class="flap" onclick="openLetter()"></div>
+        <div class="letter" onclick="openLetter()">
+Dearest Gab,
+
+You warned me from the start. You didn't sugarcoat anything. You told me you were never the easiest choice. You said the world was wide, full of softer options, calmer loves, and easier hands to hold. You reminded me that there are plenty of fish in the sea, as if love were meant to be replaced the moment it becomes heavy. But what if I don't want the sea? What if I only ever learned how to swim because of you? You are not ordinary—you are rare. A soul that is difficult to find, and once found, impossible to forget.
+
+Getting to know you felt like learning a new language without a dictionary—trial and error. Sometimes the pronunciation was wrong, sometimes the meaning was unclear. But with every day that I learned more about you, I began to understand that your complexity was not a warning, but an invitation. A privilege. Because not everyone is given the chance to see beyond the walls you built just to survive.
+
+So if you think you are hard to love, let me be the one who stays anyway. Let me be the one who doesn't flinch when you are fragile, when you are unsure, when you are tired of being strong. You are allowed to be weak with me. You can fall apart here. And when you feel like breaking, I will be the arms that catch you before you even hit the ground—not because I have to, but because I choose to.
+
+I promised that when the storms come, when the world turns loud and cruel and tries to pull us apart, I would still be here—holding on, not letting go, not loosening my grip, not stepping back when the waves rise higher. I chose you knowing the cost, knowing the risk, knowing the weight—and still, I stepped forward.
+
+I love you in a way that crawls back even when it is bleeding. In a way that kneels before you without shame. In a way that doesn't run when things get hard, but instead roots itself deeper. I love you in a way that chooses you again and again—on days you are gentle, and on days you are sharp; when you are certain, and when you are breaking.
+
+If loving you means choosing the hardest path every day, then I will walk it barefoot. If loving you means crawling back when pride tells me not to, then I will crawl. Because it is you. And somehow, despite everything—you are still the only place I want to come home to.
+
+And maybe that is why I've been thinking so much about how deeply you've changed my life. I realized that some things deserve to be said, not just felt. You came into my life quietly, yet somehow became one of the most important parts of it. With you, ordinary days feel warmer, and even the hard ones feel easier to face.
+
+Thank you for being there in ways I didn't even know I needed—for your patience, your understanding, and the comfort you give without trying. You make me feel seen, supported, and accepted for who I am.
+
+And just like I always say, I will always be here for you—supporting you in everything and in all the dreams you want to achieve in life.
+
+But again, I'm not saying you have to love me back right away. I want you to take your time and learn to love yourself more first before loving someone else. I will wait for you, and waiting will never feel like a waste of time as long as it's you I'm waiting for.
+
+I want you to know that no matter what the future holds, I will always be here for you—through the highs and even in the deepest lows. I will stand by your side, offering you all the love I have to give. You are my heart's home, and I will love you no matter what, with all that I am, always and forever.
+
+I wish you could see yourself the way I see you. You are so pretty, inside and out—intelligent, thoughtful, and full of wonderful qualities that I truly admire. That's why I'm so thankful to God for letting me meet someone like you.
+
+I love you so much, Gab—with all of my heart, for eternity and beyond, even in our next lifetime.
+
+Happy Valentine's Day.  ❣
+
+With all my love,
+Jc
+        </div>
+    </div>
+    <p class="footer">Tap the heart po, thanks!</p>
+</div>
+
+<!-- Music -->
+<audio id="bgMusic" loop>
+    <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// Create falling hearts
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.innerHTML = '❤';
+    heart.style.left = Math.random() * 100 + '%';
+    heart.style.animationDuration = (Math.random() * 4 + 3) + 's';
+    heart.style.fontSize = (Math.random() * 10 + 10) + 'px';
+    heart.style.setProperty('--sway', (Math.random() * 60 - 30) + 'px');
+    heart.style.opacity = (Math.random() * 0.1 + 0.05);
+    
+    document.querySelector('.hearts-container').appendChild(heart);
+    
+    setTimeout(() => {
+        heart.remove();
+    }, 7000);
+}
+
+setInterval(createHeart, 100); 
+
+function openLetter() {
+    var env = document.getElementById("env");
+    env.classList.toggle("open");
+    
+    // Play music pag binuksan yung envelope
+    var music = document.getElementById("bgMusic");
+    if (env.classList.contains("open")) {
+        music.play();
+    } else {
+        music.pause();
+    }
+}
+</script>
+
+</body>
+</html>
