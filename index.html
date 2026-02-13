@@ -10,7 +10,7 @@
 <div class="hearts-container"></div>
 
 <div class="header">
-Happy Valentine's Day! ❣
+Happy Valentine's Day, Gab! ❣
 </div>
 
 <div class="container">
@@ -55,13 +55,11 @@ Jc
     <p class="footer">Tap the heart po, thanks!</p>
 </div>
 
-<!-- Music -->
 <audio id="bgMusic" loop>
     <source src="song.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-// Create falling hearts
 function createHeart() {
     const heart = document.createElement('div');
     heart.classList.add('heart');
@@ -85,7 +83,6 @@ function openLetter() {
     var env = document.getElementById("env");
     env.classList.toggle("open");
     
-    // Play music pag binuksan yung envelope
     var music = document.getElementById("bgMusic");
     if (env.classList.contains("open")) {
         music.play();
